@@ -19,11 +19,11 @@ const Navbar = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <div>Home</div>
+            <Link to="/">Home</Link>
           </li>
 
           <li>
-            <div>Blogs</div>
+            <Link to="/blogs">Blogs</Link>
           </li>
         </ul>
 
@@ -34,11 +34,11 @@ const Navbar = () => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full" title="">
+              <div title={user?.displayName} className="w-10 rounded-full">
                 <img
                   referrerPolicy="no-referrer"
                   alt="User Profile Photo"
-                  src=""
+                  src={user?.photoURL}
                 />
               </div>
             </div>
@@ -47,17 +47,19 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <div className="justify-between">Add Job</div>
+                <Link>All Jobs</Link>
               </li>
               <li>
-                <div>My Posted Jobs</div>
+                <Link>Applied Jobs</Link>
               </li>
               <li>
-                <div>My Bids</div>
+                <Link>Add A Job</Link>
               </li>
+
               <li>
-                <div>Bid Requests</div>
+                <Link>My Jobs</Link>
               </li>
+
               <li className="mt-2">
                 <button className="bg-gray-200 block text-center">
                   Logout

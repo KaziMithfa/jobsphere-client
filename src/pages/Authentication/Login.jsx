@@ -1,8 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgImg from "../../assets/images/login.jpg";
 import logo from "../../assets/images/developer.png";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Google Sign In
+
+  // we are doing it differently not .. then , we are using async await here...
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success("Sign In successfully");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
+  };
+
+  // Email Password Sign In
+
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)]">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
@@ -22,7 +44,10 @@ const Login = () => {
             Welcome back!
           </p>
 
-          <div className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 ">
+          <div
+            onClick={handleGoogleSignIn}
+            className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
+          >
             <div className="px-4 py-2">
               <svg className="w-6 h-6" viewBox="0 0 40 40">
                 <path
