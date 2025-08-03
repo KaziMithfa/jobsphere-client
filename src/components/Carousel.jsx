@@ -33,15 +33,27 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Slide image={bgImg1}></Slide>
+          <Slide
+            image={bgImg1}
+            title="Find Your Dream Job"
+            description="Explore thousands of opportunities tailored to your skills and passion"
+          ></Slide>
         </SwiperSlide>
 
         <SwiperSlide>
-          <Slide image={bgImg2}></Slide>
+          <Slide
+            image={bgImg2}
+            title="Apply Anywhere, Anytime"
+            description="Search and apply for jobs on the go — anytime, from any device"
+          ></Slide>
         </SwiperSlide>
 
         <SwiperSlide>
-          <Slide image={bgImg3}></Slide>
+          <Slide
+            image={bgImg3}
+            title="Grow Your Career"
+            description="Unlock your full potential and take the next step in your career journey."
+          ></Slide>
         </SwiperSlide>
       </Swiper>
     </div>
