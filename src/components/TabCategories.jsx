@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobCard from "./JobCard";
 
-const TabCategories = () => {
+const TabCategories = ({ jobs }) => {
   return (
     <Tabs>
       <div className="container px-6 py-10 mx-auto">
@@ -21,25 +21,41 @@ const TabCategories = () => {
         </div>
 
         <TabPanel>
-          <h2>
-            <JobCard></JobCard>
-          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 lg:mt-16 gap-8">
+            {jobs
+              .filter((j) => j.category === "On Site Job")
+              .map((job) => (
+                <JobCard key={job._id} job={job}></JobCard>
+              ))}
+          </div>
         </TabPanel>
         <TabPanel>
-          <h2>
-            <JobCard></JobCard>
-          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 lg:mt-16 gap-8">
+            {jobs
+              .filter((j) => j.category === "Remote Job")
+              .map((job) => (
+                <JobCard key={job._id} job={job}></JobCard>
+              ))}
+          </div>
         </TabPanel>
         <TabPanel>
-          <h2>
-            <JobCard></JobCard>
-          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 lg:mt-16 gap-8">
+            {jobs
+              .filter((j) => j.category === "Hybrid")
+              .map((job) => (
+                <JobCard key={job._id} job={job}></JobCard>
+              ))}
+          </div>
         </TabPanel>
 
         <TabPanel>
-          <h2>
-            <JobCard></JobCard>
-          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 lg:mt-16 gap-8">
+            {jobs
+              .filter((j) => j.category === "Part Time")
+              .map((job) => (
+                <JobCard key={job._id} job={job}></JobCard>
+              ))}
+          </div>
         </TabPanel>
       </div>
     </Tabs>
