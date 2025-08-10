@@ -6,6 +6,7 @@ import Register from "../pages/Authentication/Register";
 import Blogs from "../pages/Blogs";
 import JobDetails from "../pages/JobDetails";
 import ErrorPage from "../pages/ErrorPage";
+import AddJob from "../pages/AddJob";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
+      },
+
+      {
+        path: "/add-job",
+        element: <AddJob></AddJob>,
       },
 
       {

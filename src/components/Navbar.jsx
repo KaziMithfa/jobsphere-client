@@ -53,7 +53,7 @@ const Navbar = () => {
                 <Link>Applied Jobs</Link>
               </li>
               <li>
-                <Link>Add A Job</Link>
+                <Link to="/add-job">Add A Job</Link>
               </li>
 
               <li>
