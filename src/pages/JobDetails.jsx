@@ -1,33 +1,67 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
+import img from "../assets/images/banner1.jpg";
 
 const JobDetails = () => {
+  const job = useLoaderData();
+
+  const {
+    _id,
+    name,
+    jobTitle,
+    jobPostingDate,
+    applicationDeadline,
+    salaryRange,
+    category,
+    jobApplicants,
+  } = job || {};
+
   return (
-    <div className="flex  justify-center items-center min-h-screen">
-      <div className="w-full sm:max-w-sm lg:max-w-3xl md:max-w-2xl px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-bold text-gray-600">
-            Job Posting Date :
-          </span>
-          <span className="px-3 py-1 text-[8px] text-blue-800 uppercase bg-blue-200 rounded-full "></span>
-        </div>
+    <div className="flex justify-center">
+      <div className=" max-w-2xl  overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <img className="object-cover w-full h-64" src={img} alt="Article" />
 
-        <div>
-          <div className="flex items-center justify-between">
-            <h1 className="mt-2 text-lg font-semibold text-gray-800 "></h1>
-
-            <h2 className=" mt-2 text-sm font-bold text-gray-600">
-              Name: {name}
-            </h2>
+        <div className="p-6">
+          <div>
+            <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
+              {category}
+            </span>
+            <a
+              href="#"
+              className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
+              tabIndex="0"
+              role="link"
+            >
+              {jobTitle}
+            </a>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
+              parturient et sem ipsum volutpat vel. Natoque sem et aliquam
+              mauris egestas quam volutpat viverra. In pretium nec senectus
+              erat. Et malesuada lobortis.
+            </p>
           </div>
 
-          <p className="mt-2 text-sm text-gray-600 ">Job Applicants Number:</p>
-          <p className="mt-2 text-sm font-bold text-gray-600 ">Salary Range:</p>
-          <div className="flex items-center justify-between ">
-            <p className="text-sm font-bold text-gray-600">Deadline :</p>
+          <div className="mt-4">
+            <div className="flex justify-between">
+              <div className="flex items-center">
+                <a
+                  href="#"
+                  className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                  tabIndex="0"
+                  role="link"
+                >
+                  {salaryRange}
+                </a>
+              </div>
+              <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+                {applicationDeadline}
+              </span>
+            </div>
+          </div>
 
-            <button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-              View Details
-            </button>
+          <div className="flex justify-end">
+            <button className="btn">Apply</button>
           </div>
         </div>
       </div>
