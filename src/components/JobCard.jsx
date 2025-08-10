@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const JobCard = ({ job }) => {
   const {
+    _id,
     name,
     jobTitle,
     jobPostingDate,
@@ -8,10 +11,13 @@ const JobCard = ({ job }) => {
     category,
     jobApplicants,
   } = job;
-  console.log(category);
+  console.log(_id);
 
   return (
-    <div className="w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all">
+    <Link
+      to={`/job/${_id}`}
+      className="w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all"
+    >
       <div className="flex items-center justify-between">
         <span className="text-sm font-bold text-gray-600">
           Job Posting Date :{jobPostingDate}
@@ -48,7 +54,7 @@ const JobCard = ({ job }) => {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
