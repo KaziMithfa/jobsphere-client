@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../provider/AuthProvider";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddJob = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -12,18 +14,34 @@ const AddJob = () => {
     e.preventDefault();
 
     const form = e.target;
-    const jobBanner = form.job_banner.value;
-    const jobTitle = form.job_title.value;
-    const name = form.user_name.value;
-    const email = form.email.value;
-    const category = form.category.value;
-    const salaryRange = form.salary.value;
+    const jobBanner = form.job_banner.value.trim();
+    const jobTitle = form.job_title.value.trim();
+    const name = form.user_name.value.trim();
+    const email = form.email.value.trim();
+    const category = form.category.value.trim();
+    const salaryRange = form.salary.value.trim();
     const jobPostingDate = startDate;
     const applicationDeadline = deadLineDate;
+    const description = form.description.value.trim();
 
     const jobApplicants = parseInt(form.job_applicants.value);
 
-    const job = {
+    if (
+      !jobBanner ||
+      !jobTitle ||
+      !name ||
+      !email ||
+      !category ||
+      !salaryRange ||
+      !jobPostingDate ||
+      !applicationDeadline ||
+      !description
+    ) {
+      toast.error("please fill in all the required fields before submitting ");
+      return;
+    }
+
+    const jobData = {
       jobBanner,
       jobTitle,
       name,
@@ -39,6 +57,17 @@ const AddJob = () => {
         photo: user?.photoURL,
       },
     };
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/job`,
+        jobData
+      );
+      console.log(data);
+      toast.success("Job Data Updated Successfully");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
