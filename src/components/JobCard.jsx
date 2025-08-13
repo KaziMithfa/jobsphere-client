@@ -42,7 +42,7 @@ const JobCard = ({ job }) => {
           Job Applicants Number: {jobApplicants}
         </p>
         <p className="mt-2 text-sm font-bold text-gray-600 ">
-          Salary Range: {salaryRange}
+          Salary Range: {salaryRange} $
         </p>
         <div className="flex items-center justify-between ">
           <p className="text-sm font-bold text-gray-600">

@@ -13,13 +13,18 @@ const JobDetails = () => {
     applicationDeadline,
     salaryRange,
     category,
+    jobBanner,
     jobApplicants,
   } = job || {};
 
   return (
     <div className="flex justify-center">
       <div className=" max-w-2xl  overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <img className="object-cover w-full h-64" src={img} alt="Article" />
+        <img
+          className="object-cover w-full h-64"
+          src={jobBanner}
+          alt="Article"
+        />
 
         <div className="p-6">
           <div>
@@ -51,7 +56,7 @@ const JobDetails = () => {
                   tabIndex="0"
                   role="link"
                 >
-                  {salaryRange}
+                  {salaryRange} $
                 </a>
               </div>
               <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
