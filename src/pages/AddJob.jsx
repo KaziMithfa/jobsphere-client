@@ -48,6 +48,7 @@ const AddJob = () => {
       email,
       category,
       salaryRange,
+      description,
       jobApplicants,
       jobPostingDate,
       applicationDeadline,
