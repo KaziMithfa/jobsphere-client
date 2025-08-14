@@ -30,15 +30,16 @@ const JobDetails = () => {
     const resume = form.resume.value;
     const email = form.email.value;
     const name = form.name.value;
+    const jobId = _id;
 
     const appliedJob = {
+      jobId,
       resume,
       email,
       name,
       jobTitle,
       category,
       salaryRange,
-      jobApplicants,
       jobBanner,
       buyer_email: buyer?.email,
       buyer_name: buyer?.name,
@@ -66,7 +67,11 @@ const JobDetails = () => {
       console.log(data);
       toast.success("Your job has been applied Successfully");
     } catch (err) {
-      console.log(err);
+      if (err.response && err.response.data) {
+        toast.error(err.response.data);
+      } else {
+        toast.error("Something went wrong, please try again");
+      }
     }
   };
 
@@ -176,7 +181,6 @@ const JobDetails = () => {
                   </div>
 
                   <button className="btn w-full text-center text-black mt-3 ">
-                    {" "}
                     Submit
                   </button>
                 </form>
