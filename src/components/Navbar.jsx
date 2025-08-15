@@ -57,7 +57,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link>My Jobs</Link>
+                <Link to="/my-jobs">My Jobs</Link>
               </li>
 
               <li className="mt-2">

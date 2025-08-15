@@ -8,6 +8,7 @@ import JobDetails from "../pages/JobDetails";
 import ErrorPage from "../pages/ErrorPage";
 import AddJob from "../pages/AddJob";
 import PrivateRoute from "./PrivateRoute";
+import MyJobs from "../pages/MyJobs";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/my-jobs",
+        element: <MyJobs></MyJobs>,
+      },
+
+      {
         path: "/add-job",
         element: (
           <PrivateRoute>
@@ -43,7 +49,11 @@ const router = createBrowserRouter([
 
       {
         path: "/job/:id",
-        element: <JobDetails></JobDetails>,
+        element: (
+          <PrivateRoute>
+            <JobDetails></JobDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
       },
