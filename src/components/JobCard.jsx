@@ -11,7 +11,6 @@ const JobCard = ({ job }) => {
     category,
     jobApplicants,
   } = job;
-  console.log(_id);
 
   return (
     <Link
