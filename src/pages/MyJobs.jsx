@@ -2,6 +2,8 @@ import axios, { Axios } from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyJobs = () => {
   const { user } = useContext(AuthContext);
@@ -10,6 +12,39 @@ const MyJobs = () => {
   useEffect(() => {
     getData();
   }, [user]);
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axios.delete(
+            `${import.meta.env.VITE_API_URL}/job/${id}`
+          );
+
+          toast.success("Delete Successfully");
+
+          // refresh UI
+          getData();
+        } catch (err) {
+          toast.error(err.message);
+        }
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   const getData = async () => {
     const { data } = await axios.get(
@@ -130,7 +165,10 @@ const MyJobs = () => {
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
-                          <button className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none">
+                          <button
+                            onClick={() => handleDelete(job._id)}
+                            className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
