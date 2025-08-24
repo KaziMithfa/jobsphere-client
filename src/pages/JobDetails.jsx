@@ -40,6 +40,7 @@ const JobDetails = () => {
       jobTitle,
       category,
       salaryRange,
+      description,
       jobBanner,
       buyer_email: buyer?.email,
       buyer_name: buyer?.name,
