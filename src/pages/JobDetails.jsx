@@ -115,7 +115,7 @@ const JobDetails = () => {
                 </a>
               </div>
               <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                {applicationDeadline}
+                {new Date(applicationDeadline).toLocaleDateString()}
               </span>
             </div>
           </div>
