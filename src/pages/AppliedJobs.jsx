@@ -5,14 +5,17 @@ import axios from "axios";
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
   const [jobs, setJobs] = useState([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     getData();
-  }, [user]);
+  }, [user, filter]);
 
   const getData = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/appliedJobs/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/appliedJobs/${
+        user?.email
+      }?filter=${filter}`
     );
     setJobs(data);
   };
@@ -25,6 +28,23 @@ const AppliedJobs = () => {
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
           {jobs.length} Jobs
         </span>
+      </div>
+
+      <div className="flex justify-center">
+        <select
+          onChange={(e) => {
+            setFilter(e.target.value);
+          }}
+          name="category"
+          id="category"
+          className="border rounded-lg p-4"
+        >
+          <option value="">Filter By Category</option>
+          <option value="On Site">On Site</option>
+          <option value="Remote">Remote</option>
+          <option value="Part-Time">Part Time</option>
+          <option value="Hybrid">Hybrid</option>
+        </select>
       </div>
 
       <div className="flex flex-col mt-6">

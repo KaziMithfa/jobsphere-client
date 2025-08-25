@@ -31,7 +31,9 @@ const JobCard = ({ job }) => {
           <h1 className="mt-2 text-lg font-semibold text-gray-800 ">
             {jobTitle}
           </h1>
+        </div>
 
+        <div>
           <h2 className=" mt-2 text-sm font-bold text-gray-600">
             Name: {name}
           </h2>
