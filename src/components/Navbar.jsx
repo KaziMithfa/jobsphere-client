@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import logo from "../assets/images/logo.jpg";
+import hamburger from "../assets/images/hamburger.png";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router-dom";
 
@@ -9,21 +10,55 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm container px-4 mx-auto">
       <div className="flex-1">
-        <div className="flex gap-2 items-center">
+        <div className="flex md:gap-2 items-center">
           <img className="w-auto h-7" src={logo} alt="" />
-          <span className="lg:font-bold lg:text-3xl sm:font-light sm:text-xs">
+          <span className="lg:font-bold lg:text-3xl sm:font-extralight sm:text-xs">
             JobSphere
           </span>
         </div>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+      <div className="flex-none ">
+        {/* Mobile Menu Hamburger */}
+
+        <div className="dropdown dropdown-end md:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost">
+            <img src={hamburger} className="h-6 w-6" alt="" />
+          </div>
+
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-40 z-50"
+          >
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/blogs">Blogs</Link>
+            </li>
+            <li>
+              <Link to="/allJobs">All Jobs</Link>
+            </li>
+            {!user && (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            )}
+          </ul>
+        </div>
+
+        {/* Dekstop menu */}
+
+        <ul className="menu menu-horizontal px-1 hidden md:flex">
           <li>
             <Link to="/">Home</Link>
           </li>
 
           <li>
             <Link to="/blogs">Blogs</Link>
+          </li>
+
+          <li>
+            <Link to="/allJobs">All Jobs</Link>
           </li>
         </ul>
 
@@ -46,9 +81,6 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link>All Jobs</Link>
-              </li>
               <li>
                 <Link to="/applied-jobs">Applied Jobs</Link>
               </li>
