@@ -4,6 +4,7 @@ import bgImg2 from "../../assets/images/register.jpg";
 import logo from "../../assets/images/developer.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -27,19 +28,31 @@ const Register = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    const name = form.name.value;
-    const photo = form.photo.value;
+    const target = e.target;
+    const email = target.email.value;
+    const password = target.password.value;
+    const name = target.name.value;
+    const photo = target.photo.value;
     console.log(email, password, name, photo);
 
     try {
       // user login
       const result = await createUser(email, password);
-      console.log(result);
+
       await updateUserProfile(name, photo);
-      setUser({ ...user, photoURL: photo, displayName: name });
+      //optimistic UI update
+      setUser({ ...result?.user, photoURL: photo, displayName: name });
+
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
       navigate(form, { replace: true });
       toast.success("Sign In successfully");
     } catch (error) {

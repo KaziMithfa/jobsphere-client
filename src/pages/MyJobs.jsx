@@ -26,6 +26,7 @@ const MyJobs = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axios.delete(
+            // here we are passing the cookie to the server site
             `${import.meta.env.VITE_API_URL}/job/${id}`
           );
 
@@ -47,8 +48,14 @@ const MyJobs = () => {
   };
 
   const getData = async () => {
+    if (!user?.email) return;
+
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/jobs/${user?.email}
+      `,
+      {
+        withCredentials: true,
+      }
     );
     setJobs(data);
   };
@@ -115,7 +122,7 @@ const MyJobs = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
                   {jobs.map((job) => (
-                    <tr>
+                    <tr key={job._id}>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                         {job.jobTitle}
                       </td>

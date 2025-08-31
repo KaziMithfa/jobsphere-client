@@ -4,6 +4,7 @@ import logo from "../../assets/images/developer.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useContext } from "react";
 import toast from "react-hot-toast";
+import axios, { Axios } from "axios";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -17,7 +18,17 @@ const Login = () => {
   // we are doing it differently not .. then , we are using async await here...
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
+      const result = await signInWithGoogle();
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(data);
       toast.success("Sign In successfully");
       navigate(form, { replace: true });
     } catch (error) {
@@ -30,15 +41,26 @@ const Login = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const target = e.target;
+    const email = target.email.value;
+    const password = target.password.value;
     console.log(email, password);
 
     try {
       // user login
       const result = await signIn(email, password);
-      console.log(result);
+
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(data);
+
       navigate(form, { replace: true });
       toast.success("Sign In successfully");
     } catch (error) {
