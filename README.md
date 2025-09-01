@@ -1,12 +1,31 @@
-# React + Vite
+# 🌐 JobSphere – A Modern Job Portal Website  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 **Live Site URL:** https://jobsphere-45283.web.app)  
+📦 **Category:** Job Portal  
 
-Currently, two official plugins are available:
+## 📖 Introduction  
+JobSphere is a full-stack job portal where users can add jobs, explore different job categories, and apply for positions seamlessly.  
+It is designed to be fully responsive, secure, and user-friendly, providing an end-to-end solution for job seekers and job posters.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features  
+- 🔑 **Authentication System** – Secure login & registration using Email/Password and Google Sign-In.  
+- 📌 **Job Management** – Users can post jobs, view jobs by category (On-Site, Remote, Hybrid, Part-Time), and update or delete their own jobs.  
+- 📝 **Job Application** – Users can apply for jobs via a modal with resume link submission. Applicant count updates dynamically.  
+- 🔍 **Search & Filter** – Search jobs by title and filter applied jobs by category.  
+- 🔒 **Private Routes** – Protects job details, applied jobs, add job, and my jobs pages. Logged-in users stay logged in even after reloading.  
+- 📱 **Responsive Design** – Works smoothly on mobile, tablet, and desktop.  
+- 📰 **Blog Page** – Includes detailed answers on tokens, Express.js, and NestJS.  
+- ⚡ **Real-time Notifications** – Toast messages for success, errors, and validations.  
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack  
+**Frontend:** React, React Router, Context API, Axios, Tailwind CSS  
+**Backend:** Node.js, Express.js, JWT Authentication  
+**Database:** MongoDB  
+**Hosting:** Firebase (Frontend), Vercel (Backend)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📂 Project Structure  
+- `client/` – React frontend (user interface & routing)  
+- `server/` – Express backend (API, authentication, database)  
+
+
+
